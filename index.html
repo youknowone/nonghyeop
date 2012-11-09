@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Nonghyeop remote terminal</title>
+	<style type="text/css" media="all">
+	html body div p { margin: 0; padding: 0; }
+	a a:hover a:active { color: white; text-decoration: bold; }
+	</style>
+	<script>
+function input(event) {
+	var ev = undefined;
+	if (event)
+		ev = event;
+	else
+		ev = window.event;
+	if (ev.keyCode == 13) {
+		var console = document.getElementById('console');
+		var interaction = document.getElementById('interaction');
+		var command = interaction.value;
+		console.innerHTML += "<br/>bash# "+command;
+		if (command == 'clear') {
+			console.innerHTML = '';
+		}
+		else if (command == 'ls') {
+			console.innerHTML += '<br/>ls: cannot open directory .: Permission denied';
+		}
+		else if (command == 'whoami') {
+			console.innerHTML += '<br/>rm.dd launcher';
+		}
+		else if (command == 'rm') {
+			console.innerHTML += '<br/>Permission denied';
+		}
+		else if (command == 'rm.dd') {
+			// 리얼리티를 살림
+			console.innerHTML += '<br/>rm.dd: command not found';
+		} else {
+			// 조선일보 기사의 정확성을 다같이 감상하기 위해 링크를 알려줌
+			console.innerHTML += '<br/>You cannot access unauthorized command. See allowed commands <a href="http://news.chosun.com/site/data/html_dir/2011/04/15/2011041501343.html">here</a>.';
+		}
+		interaction.value = '';
+	}
+}
+	</script>
+</head>
+<body style="color:white; background-color:#000" onLoad="document.getElementById('interaction').focus()">
+	<div style="width: 800px; color:white; background-color:black;">
+	<p id="console" style="width: 100%;">
+Welcome to the Nonghyeop Server!<br/>
+You have new mail.<br/>
+<br/>
+Logging in on TTYn0n6hy0p</p>
+	<p style="line-height:1em;">bash# <input type="text" id="interaction" style="background-color:black; color: white; border:0; width:730px" onKeyUp="input(event)" /></p>
+	</div>
+</body>
+</html>
+
